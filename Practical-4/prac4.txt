@@ -1,0 +1,19 @@
+1.CREATE OR REPLACE PROCEDURE factorial(x IN number)
+AS
+nm number;
+fact number;
+BEGIN
+ nm:=1;
+ fact:=1;
+ FOR nm in 1..x LOOP
+   fact:=fact*nm;
+ END LOOP;
+ dbms_output.put_line('Factorial of '||x||' is : '||fact);
+END;
+-->BEGIN
+ factorial(10);
+END;
+
+2.
+
+
