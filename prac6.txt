@@ -1,0 +1,35 @@
+1.
+CREATE OR REPLACE PACKAGE emp_data AS
+  FUNCTION emp_info(empid in number) return varchar;
+  FUNCTION tot_sal(empid in number) return number;
+end emp_data;
+----->Package is created
+
+CREATE OR REPLACE PACKAGE BODY emp_data AS
+  FUNCTION emp_info(empid in number) return varchar as
+  name varchar(20);
+  begin
+     select name into name from emp where empno=empid;
+     return name;
+  end emp_info;
+  FUNCTION tot_sal(empid in number) return number as
+    sal number;
+  begin
+    select salary into sal from emp where empno=empid;  
+    return sal;
+  end tot_sal;
+end emp_data;
+
+->Package body is created
+
+Declare
+  id number;
+Begin
+ id:=:id;
+ DBMS_OUTPUT.PUT_LINE('Employee Name : ' || emp_data.emp_info(id));
+ DBMS_OUTPUT.PUT_LINE('Employee Salary : ' || emp_data.tot_sal(id));
+End;
+
+---->
+Employee Name : jayesh
+Employee Salary : 17000
